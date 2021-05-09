@@ -1,23 +1,20 @@
 import React from 'react';
 import './App.css';
 import Header from './pages/header/Header';
-import Sidebar from './pages/sidebar/Sidebar';
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import Body from './pages/body/Body';
+import SendMail from './components/SendMail';
+import { useSelector } from 'react-redux';
+import { selectSendMessageIsOpen } from './features/mailSlice';
 
 function App() {
+  const sendMessageIsOpen = useSelector(selectSendMessageIsOpen);
+
   return (
-    <BrowserRouter>
-      <div className='app'>
-        <Header />
-        <div className='app__body'>
-          <Sidebar />
-          <Switch>
-            {/* <Route path='/mail' conponent={Mail} /> */}
-            {/* <Route path='/' conponent={EmailList} />  */}
-          </Switch>
-        </div>
-      </div>
-    </BrowserRouter>
+    <div className='app'>
+      <Header />
+      <Body />
+      {sendMessageIsOpen && <SendMail />}
+    </div>
   );
 }
 
