@@ -10,12 +10,28 @@ import {
   Redo,
   Settings,
 } from '@material-ui/icons';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './EmailList.css';
 import Section from './components/Section';
 import EmailRow from './components/EmailRow';
+import { db } from '../../../firebase';
 
 export default function EmailList() {
+  const [emails, setEmails] = useState([]);
+
+  useEffect(() => {
+    db.collection('emails')
+      .orderBy('timestamp', 'desc')
+      .onSnapshot((snapshot) =>
+        setEmails(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            data: doc.data(),
+          }))
+        )
+      );
+  }, []);
+
   return (
     <div className='emailList'>
       <div className='emailList__settings'>
@@ -59,12 +75,16 @@ export default function EmailList() {
         />
       </div>
       <div className='emailList__list'>
-        <EmailRow
-          title='Twitch'
-          subject='Hey Follow Streamer!'
-          description='This is the best'
-          time='10pm'
-        />
+        {emails.map(({ id, data: { to, subject, message, timestamp } }) => (
+          <EmailRow
+            id={id}
+            title={to}
+            subject={subject}
+            description={message}
+            time={new Date(timestamp?.seconds * 1000).toUTCString()}
+            key={id}
+          />
+        ))}
       </div>
     </div>
   );
