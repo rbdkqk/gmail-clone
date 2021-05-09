@@ -1,3 +1,21 @@
+## [Project Deployment Link](https://clone-53764.web.app/)
+
+(google firebase hosted)
+
+- 로그인 버튼으로 `google` 회원가입 / 로그인 (입력창 없음)
+- 로그인 후, 우측 상단 `Avatar Icon` 부분 클릭으로 로그아웃
+- 로그인 후, 좌측 상단 `Compose` 버튼으로 새로운 이메일 작성 (삭제/수정 불가)
+- 메일 리스트에서 원하는 메일을 선택하여 조회 가능
+
+---
+
+## Project Youtube Video Link
+
+[Let's build Gmail with REACT.JS! (with React-Router, REDUX & Firebase)](https://www.youtube.com/watch?v=b7nrXjS6Dqs)  
+(`Sonny Sangha` on Youtube)
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
 ## Available Scripts
